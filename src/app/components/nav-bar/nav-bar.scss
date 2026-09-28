@@ -1,0 +1,64 @@
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+}
+
+.nav-bar__links {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav-bar__link {
+  font-family: var(--font-nav);
+  font-size: clamp(0.8rem, 2.2vw, 2rem);
+  letter-spacing: 0.02em;
+  color: var(--color-white);
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.85;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &--active {
+    border-color: var(--color-white);
+    opacity: 1;
+  }
+}
+
+/* mobile: two columns — Home / Church Ceremony on the left,
+   Civil Ceremony / Dinner on the right, as in the mob design */
+@media (max-width: 640px) {
+  .nav-bar {
+    padding: 4rem 1.25rem 0;
+  }
+
+  .nav-bar__links {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    column-gap: 2.5rem;
+    row-gap: 0.65rem;
+  }
+
+  .nav-bar__link {
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    padding-bottom: 0.2rem;
+  }
+}

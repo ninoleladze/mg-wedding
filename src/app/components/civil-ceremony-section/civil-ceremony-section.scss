@@ -1,0 +1,106 @@
+.ceremony-full {
+  height:950px;
+  position: relative;
+  background-color: #3D330E;
+  overflow: hidden;
+}
+
+.ceremony-full::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/assets/images/web/page-4.png') center/cover no-repeat;
+  opacity: 0.8; /* Fade only the image */
+  z-index: 0;
+}
+
+.ceremony-full__map-link{
+  margin-top: 4rem;
+}
+
+.ceremony-full > * {
+  position: relative;
+  z-index: 1;
+}
+/* mobile: aisle sketch fills the upper part, the title sits on a lighter
+   band across the full width, View Map + time share a row underneath */
+@media (max-width: 640px) {
+  .ceremony-full {
+    height: auto;
+    min-height: 105vh;
+    position: relative;
+    background-color: #3D330E;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 0 6rem;
+  }
+
+  .ceremony-full::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 62%;
+    background: url('/assets/images/phone/page-4.png') center top / 100% 100% no-repeat;
+    opacity: 0.8;
+    z-index: 0;
+  }
+
+  .ceremony-full__content {
+    max-width: none;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0 1rem;
+    padding: 0 1.5rem;
+  }
+
+  /* title + venue each take a full row, on a lighter band */
+  .ceremony-full__title,
+  .ceremony-full__venue {
+    flex: 0 0 100%;
+    text-align: center;
+    width: 100%;
+    padding-inline: 1.25rem;
+        background-color: #867D5E;
+  }
+
+  .ceremony-full__title {
+    
+    
+    background-color: #867D5E;
+    font-size: 1.9rem;
+    padding-top: 0.75rem;
+  }
+
+  .ceremony-full__venue {
+    background-color: #867D5E;
+    font-size: 1rem;
+    padding-bottom: 0.75rem;
+    /* full opacity: at 0.9 the band under this line washed out too and the
+       two rows read as different shades instead of one solid block */
+    opacity: 1;
+  }
+
+  /* View Map on the left, time on the right — matched sizes and colour */
+  .ceremony-full__map-link,
+  .ceremony-full__time {
+    flex: 1 1 0;
+    order: 1;
+    margin-top: 2.5rem;
+    text-align: center;
+    background: var(--color-khaki);
+    color: var(--color-ivory);
+    font-size: clamp(1.05rem, 5vw, 1.4rem);
+    padding: 0.5rem 0.75rem;
+  }
+
+  .ceremony-full__time {
+    order: 2;
+  }
+}

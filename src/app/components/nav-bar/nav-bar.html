@@ -1,0 +1,13 @@
+<nav class="nav-bar">
+  <ul class="nav-bar__links">
+    @for (link of links; track link.fragment) {
+      <li>
+        <a
+          class="nav-bar__link"
+          [class.nav-bar__link--active]="link.fragment === 'home'"
+          [href]="'#' + link.fragment"
+        >{{ link.label }}</a>
+      </li>
+    }
+  </ul>
+</nav>

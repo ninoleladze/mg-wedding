@@ -1,0 +1,17 @@
+<section id="home" class="hero">
+  <app-nav-bar />
+  <div class="hero__viewport">
+    <div class="hero__track" [style.animation-duration.s]="duration">
+      @for (slide of slides; track $index) {
+        <div class="hero__slide" [style.background-image]="slideUrl(slide)"></div>
+      }
+      @for (slide of slides; track $index) {
+        <div class="hero__slide" [style.background-image]="slideUrl(slide)"></div>
+      }
+    </div>
+  </div>
+  <div class="hero__overlay"></div>
+  <p class="hero__monogram monogram">
+    <span class="monogram__m">M </span><span class="monogram__amp">&amp;</span> <span class="monogram__g">G</span>
+  </p>
+</section>

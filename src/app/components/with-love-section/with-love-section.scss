@@ -1,0 +1,97 @@
+.with-love {
+  background:#3D330E;
+}
+
+.with-love__marquee {
+  overflow: hidden;
+  padding: 1.5rem 0;
+  color: #FFFFFF  ;
+  font-size: clamp(1.25rem, 2vw, 2rem);
+  letter-spacing: 0.10em;
+}
+
+/* four identical sets; shifting by -25% advances exactly one set, landing on
+   the next identical copy, so the scroll loops without a visible jump.
+   each set is at least a screen wide so no gap can appear on the right. */
+.with-love__track {
+  display: flex;
+  width: max-content;
+  animation: with-love-marquee 30s linear infinite;
+}
+
+.with-love__set {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100vw;
+  justify-content: space-around;
+  gap: clamp(1.5rem, 5vw, 3rem);
+  /* keeps the spacing even where one set meets the next */
+  padding-right: clamp(1.5rem, 5vw, 3rem);
+}
+
+.with-love__set span {
+  white-space: nowrap;
+}
+
+@keyframes with-love-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .with-love__track {
+    animation: none;
+  }
+}
+
+.with-love__photo {
+  position: relative;
+  aspect-ratio: 1440 / 671;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(0deg, rgba(61, 51, 14, 0.2), rgba(61, 51, 14, 0.2)),
+    url('/assets/images/web/page-6.png') center / cover no-repeat;
+  background-color: #2a2712;
+}
+
+@media (max-width: 640px) {
+  /* the mob design has no "With Love" strip — only the closing photo */
+  .with-love__marquee {
+    display: none;
+  }
+
+  .with-love__photo {
+    aspect-ratio: unset;
+    min-height: 50vh;
+    display: none;
+    background:
+      linear-gradient(0deg, rgba(61, 51, 14, 0.2), rgba(61, 51, 14, 0.2)),
+      url('/assets/images/phone/page-5.1.png') center / cover no-repeat;
+    background-color: #2a2712;
+  }
+}
+
+.hero__monogram {
+  position: relative;
+  z-index: 5;
+  font-family: var(--font-script);
+  font-size: clamp(4rem, 14vw, 12.5rem);
+  color: var(--color-white);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+
+  /* დაამატე ეს ხაზები აქ: */
+  display: flex;
+  align-items: baseline; 
+  justify-content: center;
+  .monogram__amp {
+    font-size: 0.6em;
+    padding-top: 0.2em;
+  }
+  
+}

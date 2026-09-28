@@ -1,0 +1,248 @@
+/* Global styles */
+
+:root {
+  --color-olive: #776c1d;
+  --color-olive-deep: #483e1b;
+  --color-dark: #3d330e;
+  --color-khaki: #867d5e;
+  --color-gray: #d9d9d9;
+  --color-black: #000000;
+  --color-ivory: #fffff0;
+  --color-white: #ffffff;
+
+  --font-serif: 'Marcellus SC', 'Georgia', serif;
+  --font-nav: 'Matangi', var(--font-serif);
+  --font-script: 'League Script', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+
+  margin: 0;
+  padding: 0;
+  /* artwork deliberately bleeds past the left/right edges, so the page
+     itself must never scroll sideways */
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--font-serif);
+  color: var(--color-dark);
+  background: #3D330E;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* line break that only takes effect on phones */
+.only-mobile {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .only-mobile {
+    display: inline;
+  }
+}
+
+/* Monogram — M, & and G sit on a descending diagonal, as in the design.
+   All offsets are in em so the whole mark scales with its font-size. */
+.monogram {
+  display: inline-flex;
+  align-items: flex-start;
+  font-family: var(--font-script);
+  line-height: 1;
+  white-space: nowrap;
+  padding-bottom: 0.55em;
+}
+
+.monogram__amp {
+  font-size: 0.64em;
+  transform: translateY(0.62em);
+  margin-left: -0.08em;
+}
+
+.monogram__g {
+  transform: translateY(0.52em);
+  margin-left: -0.05em;
+}
+
+/* Shared full-bleed ceremony block (Civil Ceremony / Dinner) */
+.ceremony-full {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(2rem, 8vw, 6rem);
+  color: var(--color-ivory);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ceremony-full__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 640px;
+}
+
+.ceremony-full__title {
+  font-size: clamp(2.25rem, 6vw, 5.3rem);
+  font-weight: 400;
+}
+
+.ceremony-full__venue {
+  font-size: clamp(1.15rem, 2.5vw, 2.5rem);
+  opacity: 0.9;
+}
+
+.ceremony-full__time {
+  margin-top: 0.5rem;
+  padding: 0.4rem 1.25rem;
+  background: var(--color-gray);
+  color: var(--color-black);
+  font-size: clamp(1.25rem, 2.5vw, 3rem);
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.ceremony-full__map-link {
+  margin-top: 0.75rem;
+  padding: 0.6rem 1.75rem;
+  background: rgba(255, 255, 240, 0.14);
+  font-size: clamp(1.5rem, 3vw, 4rem);
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 240, 0.24);
+  }
+}
+
+@media (max-width: 640px) {
+  .ceremony-full {
+    min-height: 55vh;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ceremony-full__content {
+    align-items: center;
+  }
+}
+
+/* ---- scroll reveal ----
+   Applied by the root component as elements enter the viewport. Only
+   opacity and transform animate, so nothing reflows while scrolling. */
+.reveal {
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+/* Only the hidden state is forced. Component styles set their own resting
+   opacity (the footer links sit at 0.7, the message at 0.9) and those are
+   scoped, so they outrank a plain global class — hence !important here.
+   On arrival the rule drops away and each element returns to its own value. */
+.reveal:not(.is-visible) {
+  opacity: 0 !important;
+  transform: translateY(26px);
+}
+
+/* the hero image drifts very slowly the whole time it is on screen */
+.hero__slide {
+  animation: hero-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+/* the monogram settles in once on load */
+.hero__monogram {
+  animation: monogram-in 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes monogram-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    letter-spacing: 0.12em;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* buttons lift slightly under the cursor */
+.ceremony__map-link,
+.ceremony-full__map-link,
+.footer__back {
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.ceremony__map-link:hover,
+.ceremony-full__map-link:hover {
+  transform: translateY(-2px);
+}
+
+/* respect the OS setting: no motion, no exceptions */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal:not(.is-visible) {
+    opacity: unset !important;
+    transform: none;
+    transition: none;
+  }
+
+  .hero__slide,
+  .hero__monogram {
+    animation: none;
+  }
+
+  .ceremony__map-link:hover,
+  .ceremony-full__map-link:hover {
+    transform: none;
+  }
+}

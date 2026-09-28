@@ -1,0 +1,24 @@
+<section class="with-love">
+  <div class="with-love__marquee">
+    <div class="with-love__track">
+      <div class="with-love__set">
+        @for (item of repeats; track $index) {
+          <span>With Love</span>
+        }
+      </div>
+      @for (copy of [1, 2, 3]; track copy) {
+        <div class="with-love__set" aria-hidden="true">
+          @for (item of repeats; track $index) {
+            <span>With Love</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="with-love__photo">
+      <p class="hero__monogram monogram">
+    <span class="monogram__m">M </span><span class="monogram__amp">&amp;</span> <span class="monogram__g">G</span>
+  </p>
+  </div>
+</section>

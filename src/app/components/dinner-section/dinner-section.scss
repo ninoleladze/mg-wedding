@@ -1,0 +1,232 @@
+.ceremony-full {
+  background:
+    linear-gradient(rgba(61, 51, 14, 0.5), rgba(61, 51, 14, 0.5)),
+    url('/assets/images/web/page-5.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  aspect-ratio: 1440 / 757;
+  // სიგანე ცალსახად უნდა განისაზღვროს: მის გარეშე aspect-ratio სიგანეს
+  // სიმაღლიდან ითვლიდა და შიგთავსის ზრდა სექციას ეკრანს გარეთ ჭიმავდა
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    // გვერდებზე დაშორება: უამისოდ DINNER მარცხენა კიდეს ეკვროდა ვიწრო ეკრანზე
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
+    box-sizing: border-box;
+    gap: clamp(12px, 2.5vw, 35px);
+  }
+
+  // აძლევს სამივე სვეტს თანაბარ მაქსიმალურ სივრცეს
+  &__info,
+  &__map-wrapper,
+  &__time-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    // flex-ელემენტს ნაგულისხმევად min-width: auto აქვს და შიგთავსზე ვიწროდ
+    // ვერ იკუმშება — ამის გარეშე სამივე სვეტი სექციას ეკრანს გარეთ ჭიმავდა
+    min-width: 0;
+  }
+
+  // 1. მარცხენა სვეტი (ტექსტები)
+  &__info {
+    
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+
+    h3, p {
+      
+      font-weight: 500;
+      margin: 0;
+      color: #ffffff; // თეთრი ტექსტები
+    }
+    
+    h3 {
+      font-weight: 600;
+      font-size: clamp(1.5rem, 3vw, 2.7rem);
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    p {
+      font-size: clamp(0.85rem, 1.35vw, 1.25rem);
+    }
+  }
+
+  // 2. შუა სვეტი (რუკის ღილაკი)
+  &__map-wrapper {
+    justify-content: center; // ღილაკს დასვამს ზუსტად ცენტრში
+
+    .ceremony-full__map-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: clamp(190px, 27vw, 380px); // ღილაკის სიგანე
+      height: clamp(52px, 6.3vw, 90px);     // ღილაკის სიმაღლე
+      background: #736b53; // ფერი სურათიდან
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: clamp(0.95rem, 2.1vw, 2rem);
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+  }
+
+  // 3. მარჯვენა სვეტი (საათი)
+  &__time-wrapper {
+    justify-content: flex-end; // საათს გაწევს ბოლო მარჯვენა კიდეში
+
+    .ceremony-full__time {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: clamp(105px, 14vw, 200px); // ღილაკის სიგანე
+      height: clamp(52px, 6.3vw, 90px);     // ღილაკის სიმაღლე
+      background: #dbdbdb; // ღია ნაცრისფერი ბლოკი
+      color: #000000;      // შავი ციფრები
+      font-size: clamp(1.25rem, 3.2vw, 3rem);
+      white-space: nowrap;
+    }
+  }
+  .ceremony-full__content{
+    margin-bottom: clamp(36px, 7vw, 100px);
+  }
+
+  // სრული რესპონსიულობა მობილურებისთვის
+  @media (max-width: 768px) {
+    aspect-ratio: unset;
+    min-height: 55vh;
+
+    &__content {
+      flex-direction: column;
+      gap: 30px;
+      padding: 40px 20px;
+    }
+
+    &__info,
+    &__map-wrapper,
+    &__time-wrapper {
+      flex: none;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+
+    &__info {
+      align-items: center;
+    }
+  }
+}
+/* the two phone photos are part of the mob composition only */
+.dinner__photo {
+  display: none;
+}
+
+/* mobile running order: photo -> DINNER / TBILISI SEA CLUB -> photo ->
+   View Map + 19:00 side by side */
+@media (max-width: 640px) {
+  .ceremony-full--dinner {
+    aspect-ratio: unset;
+    min-height: 0;
+    /* the photos below carry the imagery, so no background picture here */
+    background: #3D330E;
+    padding: 0 0 2.5rem;
+
+    .ceremony-full__content {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0 1rem;
+      padding: 0 1.25rem;
+      margin-bottom: 0;
+      max-width: none;
+    }
+
+    /* inset, not full bleed: the mob frame shows these at 332x228 inside a
+       390 frame, so they keep a margin either side. Height is derived from
+       the inset width so the 332:228 proportion is preserved. */
+    .dinner__photo {
+      display: block;
+      flex: 0 0 100%;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      /* the content wrapper already pads 20px, so this only adds the
+         remainder needed to land on the frame's 332px photo width */
+      padding-inline: calc(7.5vw - 20px);
+      height: 58.5vw;
+      object-fit: cover;
+    }
+
+    .dinner__photo--top {
+      order: 1;
+    }
+
+    .ceremony-full__info {
+      order: 2;
+      flex: 0 0 100%;
+      align-items: center;
+      text-align: center;
+      padding: 1.5rem 0;
+
+      h3 {
+        font-size: 1.9rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .dinner__photo--bottom {
+      order: 3;
+    }
+
+    .ceremony-full__map-wrapper {
+      order: 4;
+    }
+
+    .ceremony-full__time-wrapper {
+      order: 5;
+    }
+
+    .ceremony-full__map-wrapper,
+    .ceremony-full__time-wrapper {
+      flex: 1 1 0;
+      width: auto;
+      margin-top: 1.75rem;
+      justify-content: center;
+    }
+
+    .ceremony-full__map-wrapper .ceremony-full__map-link,
+    .ceremony-full__time-wrapper .ceremony-full__time {
+      width: 100%;
+      max-width: none;
+      height: auto;
+      text-align: center;
+      background: var(--color-khaki);
+      color: var(--color-ivory);
+      font-size: clamp(1.05rem, 5vw, 1.4rem);
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}

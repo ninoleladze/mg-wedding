@@ -1,0 +1,340 @@
+/* ---- Invite section, laid out straight from the Figma frame ----
+   Same method as the church block below: every design value from the
+   1440x1024 frame divided by 1440 and written in vw. */
+.invite {
+  position: relative;
+  height: 71.111vw; /* 1024 */
+  background: #3D330E;
+  color: var(--color-ivory);
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.invite__heading {
+  position: absolute;
+  left: 29.444vw; /* 424 */
+  top: 12.431vw; /* 179 */
+  width: 40.625vw; /* 585 */
+  margin: 0;
+  font-weight: 400;
+  font-size: 3.333vw; /* 48 */
+  letter-spacing: 0.02em;
+  line-height: 1.09;
+}
+
+.invite__photo {
+  position: absolute;
+  left: 18.75vw; /* 270 */
+  top: 22.292vw; /* 321 */
+  width: 62.5vw; /* 900 */
+  height: 15.764vw; /* 227 */
+  margin: 0;
+  opacity: 0.5;
+  background: url('/assets/images/web/page-2.png') center / cover no-repeat;
+}
+
+.invite__date {
+  position: absolute;
+  left: 22.222vw; /* bar is wider than its text, as in the design */
+  top: 42.014vw; /* 605 */
+  width: 55.556vw; /* 800 */
+  height: 6.25vw; /* 90 */
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 240, 0.12);
+  font-size: 2.778vw; /* 40 */
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* countdown block sits at 380,797 and is 681 wide */
+.invite app-countdown-timer {
+  position: absolute;
+  left: 26.389vw; /* 380 */
+  top: 55.347vw; /* 797 */
+  width: 47.292vw; /* 681 */
+}
+
+/* ---- Church section, laid out straight from the Figma frame ----
+   Every number below is the design value from the 1440x1024 frame divided
+   by 1440 and expressed in vw, so at 1440px wide it matches the design
+   pixel for pixel and scales proportionally at any other width. */
+.ceremony {
+  position: relative;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  height: 71.111vw; /* 1024 */
+  /* not clipped: the steeple deliberately runs above this section so its
+     cross meets the countdown, exactly as the artwork does in the design */
+  overflow: visible;
+  text-align: left;
+  color: var(--color-ivory);
+}
+
+/* wrappers step out of the way so children position against .ceremony */
+.ceremony__details,
+.ceremony__actions {
+  display: contents;
+}
+
+/* base sits on the section's bottom edge; because the artwork is taller
+   than the section, its cross rises above the top edge into the countdown */
+.ceremony picture {
+  position: absolute;
+  left: -2.153vw; /* -31 */
+  bottom: 0;
+  top: auto;
+  width: 51.597vw; /* 743 */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ceremony__sketch {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* in the design this image is 1001x375 placed at top -116, so the frame
+   cuts its top off — reproduced here by showing only its lower 259px */
+.ceremony__old-photo {
+  position: absolute;
+  left: 34.583vw; /* 498 */
+  top: 0;
+  width: 69.514vw; /* 1001 */
+  height: 17.986vw; /* 375 - 116 */
+  max-width: none;
+  object-fit: cover;
+  object-position: center bottom;
+  z-index: 1;
+}
+
+.ceremony__title,
+.ceremony__venue,
+.ceremony__time,
+.ceremony__map-link,
+.ceremony__address {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  line-height: 1.09;
+  white-space: nowrap;
+}
+
+.ceremony__title {
+  left: 34.583vw; /* 498 */
+  top: 19.306vw; /* 278 */
+  font-size: 5.903vw; /* 85 */
+  font-weight: 400;
+}
+
+.ceremony__venue {
+  left: 34.583vw; /* 498 */
+  top: 25.764vw; /* 371 */
+  font-size: 2.778vw; /* 40 */
+  opacity: 0.9;
+}
+
+.ceremony__time {
+  left: 35.833vw; /* 516 */
+  top: 30.764vw; /* 443 */
+  width: 16.111vw; /* 232 */
+  height: 4.722vw; /* 68 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray);
+  color: var(--color-black);
+  font-size: 3.333vw; /* 48 */
+  letter-spacing: 0.05em;
+}
+
+.ceremony__map-link {
+  left: 35.833vw; /* 516 */
+  top: 41.667vw; /* 600 */
+  width: 30.764vw; /* 443 */
+  height: 6.042vw; /* 87 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 240, 0.14);
+  font-size: 4.444vw; /* 64 */
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 240, 0.24);
+  }
+}
+
+.ceremony__address {
+  left: 40vw; /* 576 */
+  top: 48.75vw; /* 702 */
+  font-size: 2.778vw; /* 40 */
+  opacity: 0.8;
+}
+
+/* ---- mobile: follows the mob frames (invite screen + church screen) ---- */
+@media (max-width: 640px) {
+  /* the phone frame is a different composition, so the absolute desktop
+     layout above is unwound back into normal flow here */
+  .invite {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: 3.5rem 1.25rem 3rem;
+  }
+
+  .invite__heading,
+  .invite__photo,
+  .invite__date,
+  .invite app-countdown-timer {
+    position: static;
+    left: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+  }
+
+  .invite__heading {
+    margin: 0 auto;
+  }
+
+  .invite__date {
+    display: inline-flex;
+  }
+
+  
+  .invite__heading {
+    font-size: 1.3rem;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+  }
+
+  /* the photo runs edge to edge and is tall, as in the mob frame */
+  .invite__photo {
+    background-image: url('/assets/images/phone/page-2.png');
+    aspect-ratio: 390 / 461;
+    width: auto;
+    margin: 1.75rem -1.25rem 0;
+    opacity: 0.5;
+  }
+
+  .invite__date {
+    background-color: #867D5E;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  /* church screen: the desktop layout above is absolutely positioned from
+     the 1440 frame; the phone frame is a different composition, so it is
+     rebuilt here as a normal flow column */
+  .ceremony {
+    width: auto;
+    height: auto;
+    /* no gap and no negative margins here — the church block is its own
+       element now, so any gap would show the page background as a pale line */
+    margin: 0;
+    transform: none;
+    background: #3D330E;
+    overflow: hidden;
+    padding: 2rem 1.25rem 1.5rem;
+    /* height comes from the content now, so the action row lands right
+       under the sketch instead of being stranded at the bottom */
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .ceremony__title,
+  .ceremony__venue,
+  .ceremony__time,
+  .ceremony__map-link,
+  .ceremony__address {
+    position: static;
+    width: auto;
+    height: auto;
+    white-space: normal;
+  }
+
+  /* steeple sits on the left and bleeds well past that edge, as in the mob
+     frame — only its right half is visible on screen */
+  /* the steeple artwork fills the left 75.6% of its file, so these offsets
+     put its visible edge at ~67% of the screen, as in the mob frame */
+  /* steeple sits toward the middle so the heading reads across it */
+  /* Sized in vw rather than % so the height is predictable: the file is
+     499x759, so height = width x 1.521. At 102vw the sketch ends at
+     155vw from the top, which is what the action row below clears.
+     Pulled right so the right-aligned heading runs over it. */
+  .ceremony picture {
+    display: block;
+    left: -8vw;
+    top: 0;
+    bottom: auto;
+    width: 102vw;
+  }
+
+  .ceremony__old-photo {
+    display: none;
+    
+  }
+
+  .ceremony__details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    text-align: right;
+    gap: 0.35rem;
+    margin-top: 4.5rem;
+  }
+
+  .ceremony__title {
+    font-size: clamp(1.7rem, 8.5vw, 2.3rem);
+  }
+
+  .ceremony__venue {
+    font-size: clamp(0.95rem, 4.4vw, 1.25rem);
+    line-height: 1.35;
+  }
+
+  /* clears the sketch: it ends at ~155vw and the heading block ends at
+     ~49vw, so this drops the row just below the drawing */
+  .ceremony__actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 106vw;
+    padding-top: 0;
+    gap: 1rem;
+  }
+
+  /* both chips share the row evenly and use the same colour */
+  .ceremony__time,
+  .ceremony__map-link {
+    flex: 1 1 0;
+    margin-top: 0;
+    text-align: center;
+    background: var(--color-khaki);
+    color: var(--color-ivory);
+    font-size: clamp(1.05rem, 5vw, 1.4rem);
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* sits midway between the action row above and the section edge below,
+     so the gaps on either side of it match */
+  .ceremony__address {
+    text-align: center;
+    font-size: 1.05rem;
+    margin-top: 1.5rem;
+  }
+}

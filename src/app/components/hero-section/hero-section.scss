@@ -1,0 +1,78 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(160deg, #3a4023 0%, #24280f 55%, #1a1608 100%);
+}
+
+.hero__viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* the slides are rendered twice; shifting by -50% lands on the identical
+   second copy, so the loop restarts without a visible jump */
+.hero__track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation-name: hero-marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.hero__slide {
+  width: 100vw;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@keyframes hero-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__track {
+    animation: none;
+  }
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(30, 26, 10, 0.35) 0%, rgba(30, 26, 10, 0.1) 45%, rgba(30, 26, 10, 0.45) 100%);
+}
+
+
+.hero__monogram {
+  position: relative;
+  z-index: 5;
+  font-family: var(--font-script);
+  font-size: clamp(4rem, 14vw, 12.5rem);
+  color: var(--color-white);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+
+  /* დაამატე ეს ხაზები აქ: */
+  display: flex;
+  align-items: baseline; 
+  justify-content: center;
+  .monogram__amp {
+    font-size: 0.6em;
+    padding-top: 0.2em;
+  }
+  
+}
