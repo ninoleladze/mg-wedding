@@ -24,3 +24,10 @@ npm install
 npm start        # http://localhost:4200
 npm run build    # output in dist/mg-wedding/browser
 ```
+
+## Design
+
+The original page designs the site was built from are in [`design/`](./design):
+
+- [`design/web`](./design/web) — desktop layout, page by page
+- [`design/phone`](./design/phone) — mobile layout, page by page
